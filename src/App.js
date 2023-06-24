@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Link, Route, Routes } from 'react-router-dom';
+import Add from './Components/Add';
+import Home from './Components/Home';
+import Show from './Components/Show';
+import Gallery from './Components/Gallery';
+import GalleryDetails from './Components/GalleryDetails';
+const App = () => {
 
-function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='container mt-5 m-auto'>
+      <nav className='d-flex justify-content-evenly'>
+        <Link to="/">Home</Link>
+        <Link to="/add">Add User</Link>
+        <Link to="/show" > Show User</Link>
+        <Link to="/gallery" >Show Gallery</Link>
+      </nav>
+      <hr />
+      <Routes>
+        <Route path='/' element={<Home/>} />
+        <Route path='/add' element={<Add/>} />
+        <Route path='/show' element={<Show/>} />
+        <Route path='/gallery' element={<Gallery/>} >
+          <Route path='/gallery/:id' element={<GalleryDetails/>} />
+          </Route>
+      </Routes>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
